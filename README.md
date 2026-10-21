@@ -140,7 +140,7 @@ build e traduza o novo `alt`/título nos JSON.
 ## 6. O que editar antes de divulgar
 
 1. **Download** — o botão aponta para a Release do repositório `weguest/driversize`:
-   https://github.com/weguest/driversize/releases/download/v1.2.1/DriverSize-1.2.1-setup.exe
+   https://github.com/weguest/driversize/releases/download/v1.2.2/DriverSize-1.2.2-setup.exe
    A Release precisa ser publicada com esse nome de arquivo. O instalador nunca entra neste
    repositório.
 2. **Café / doações** — troque os `href="#apoie"` (menu e banner) pelo seu link real
