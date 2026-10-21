@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DriverSize — Descubra o que ocupa o espaço do seu disco</title>
+<meta name="description" content="O DriverSize analisa suas unidades e mostra, com gráficos e listas, quais pastas e arquivos estão ocupando mais espaço no seu PC. Grátis para Windows 10 e 11 (64 bits).">
+<meta name="theme-color" content="#2563eb">
+<meta property="og:type" content="website">
+<!-- meta:start -->
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://weguest.github.io/driversize/">
+<!-- meta:end -->
+<meta property="og:title" content="DriverSize — Analisador de espaço em disco para Windows">
+<meta property="og:description" content="Veja em minutos quais pastas e arquivos estão consumindo o seu disco. Gráficos, relatórios e exportação para Excel, CSV e XML.">
+<!-- og:image: gerado pelo build.mjs (og-<idioma>.jpg); use SITE_URL para URL absoluta -->
+<meta property="og:image" content="https://weguest.github.io/driversize/assets/img/og-pt.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<!-- alternates:start -->
+<link rel="canonical" href="https://weguest.github.io/driversize/">
+<link rel="alternate" hreflang="pt-BR" href="https://weguest.github.io/driversize/">
+<link rel="alternate" hreflang="en" href="https://weguest.github.io/driversize/en/">
+<link rel="alternate" hreflang="es" href="https://weguest.github.io/driversize/es/">
+<link rel="alternate" hreflang="fr" href="https://weguest.github.io/driversize/fr/">
+<link rel="alternate" hreflang="x-default" href="https://weguest.github.io/driversize/">
+<!-- alternates:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<script>document.documentElement.classList.add('js');</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "DriverSize",
+  "operatingSystem": "Windows 11, Windows 10",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "Analisador de espaço em disco que mostra o tamanho de cada pasta e arquivo, com gráficos e relatórios.",
+  "inLanguage": "pt-BR",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "BRL"
+  }
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
+<div class="langbar">
+  <div class="container langbar__inner">
+    <!-- langswitch:start -->
+      <nav class="lang" aria-label="Idioma">
+        <a href="./" hreflang="pt-BR" lang="pt-BR" aria-current="true" aria-label="Português">PT</a>
+        <a href="en/" hreflang="en" lang="en" aria-label="English">EN</a>
+        <a href="es/" hreflang="es" lang="es" aria-label="Español">ES</a>
+        <a href="fr/" hreflang="fr" lang="fr" aria-label="Français">FR</a>
+      </nav>
+    <!-- langswitch:end -->
+  </div>
+</div>
+
+<header class="site-header" id="topo">
+  <div class="container site-header__inner">
+    <a class="brand" href="#inicio" aria-label="DriverSize — início">
+      <img class="brand__mark" src="assets/img/logo.svg" alt="" width="40" height="40" decoding="async">
+      <span class="brand__text">
+        <span class="brand__word">Driver<span>Size</span></span>
+        <small>Analisador de espaço em disco</small>
+      </span>
+    </a>
+
+    <nav class="site-nav" id="menu" aria-label="Navegação principal">
+      <a href="#inicio" class="is-active">Início</a>
+      <a href="#recursos">Recursos</a>
+      <a href="#telas">Telas</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#download">Download</a>
+    </nav>
+
+    <div class="site-header__actions">
+      <a class="btn btn--accent btn--sm" href="#apoie">
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 8h13v9a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3zM17 9h1.6a2.4 2.4 0 0 1 0 4.8H17M6 4.5c0 .8.8 1 .8 1.8M10 4.5c0 .8.8 1 .8 1.8"/></svg>
+        Me pague um café
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-controls="menu" aria-expanded="false" aria-label="Abrir menu" data-label-open="Abrir menu" data-label-close="Fechar menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="inicio">
+    <div class="hero__glow" aria-hidden="true"></div>
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <span class="eyebrow eyebrow--pill">Grátis para Windows</span>
+        <h1>Veja o que está ocupando <span class="hl">o espaço do seu disco</span></h1>
+        <p class="lead">
+          O DriverSize varre suas unidades, mede cada pasta e mostra — com gráficos e listas —
+          exatamente onde o espaço foi parar. Sem instalar serviços, sem hooks e sem deixar seu PC mais lento.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary btn--lg" href="#download">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M12 4v11m0 0 4.2-4.2M12 15l-4.2-4.2M5 19h14"/></svg>
+            Baixar grátis
+          </a>
+          <a class="btn btn--ghost btn--lg" href="#telas">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><rect x="3.5" y="5" width="17" height="14" rx="2.4"/><path d="M3.5 9h17"/></svg>
+            Ver telas
+          </a>
+        </div>
+        <ul class="trust">
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19 6v5.5c0 4-3 6.8-7 9-4-2.2-7-5-7-9V6z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg>
+            100% grátis
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3 5 13.5h5L9.5 21 19 10h-5.4z"/></svg>
+            Leve e rápido
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="12" rx="2"/><path d="M8.5 20h7M12 16.5V20"/></svg>
+            Windows 10 / 11 · 64 bits
+          </li>
+        </ul>
+      </div>
+
+      <div class="hero__art">
+        <figure class="shot shot--hero">
+          <img
+            src="assets/img/screens/visao-geral.webp"
+            width="1600"
+            height="852"
+            alt="Janela do DriverSize com a visão geral: árvore de pastas, gráfico de distribuição por tipo e lista das maiores pastas"
+            fetchpriority="high"
+            decoding="async">
+        </figure>
+        <p class="shot__note">Captura real do app, sem retoques.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RECURSOS ============ -->
+  <section class="section" id="recursos">
+    <div class="container">
+      <header class="section__head reveal">
+        <span class="eyebrow">Principais recursos</span>
+        <h2>Simples, rápido e eficiente</h2>
+        <p class="section__sub">Tudo o que você precisa para entender — e liberar — o espaço do seu computador.</p>
+      </header>
+
+      <div class="cards">
+        <article class="card reveal">
+          <span class="card__icon card__icon--blue">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m15.6 15.6 4 4"/></svg>
+          </span>
+          <h3>Varredura rápida</h3>
+          <p>Escaneia o drive inteiro em minutos com varredura progressiva: se parar no meio, retoma de onde parou.</p>
+        </article>
+
+        <article class="card reveal">
+          <span class="card__icon card__icon--green">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.8a8.2 8.2 0 1 0 8.2 8.2H12z"/><path d="M12 3.8a8.2 8.2 0 0 1 8.2 8.2H12z" opacity=".45"/></svg>
+          </span>
+          <h3>Gráficos intuitivos</h3>
+          <p>Pizza e barras mostram a distribuição do espaço por pasta e por tipo de arquivo, sem planilhas.</p>
+        </article>
+
+        <article class="card reveal">
+          <span class="card__icon card__icon--violet">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 7.5a2 2 0 0 1 2-2h4l1.8 2.2h7.2a2 2 0 0 1 2 2v7.8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"/></svg>
+          </span>
+          <h3>Navegação familiar</h3>
+          <p>Interface no estilo do Explorador de Arquivos: árvore de pastas, colunas ordenáveis e atalhos de teclado.</p>
+        </article>
+
+        <article class="card reveal">
+          <span class="card__icon card__icon--orange">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 3.5H7a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9z"/><path d="M13.5 3.5V9H19M9 13h6M9 16.5h4"/></svg>
+          </span>
+          <h3>Relatórios e exportação</h3>
+          <p>Encontre os maiores, mais antigos ou vazios e exporte tudo para Excel, CSV ou XML em um clique.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TELAS / CARROSSEL ============ -->
+  <section class="shots" id="telas">
+    <div class="container">
+      <div class="shots__head reveal">
+        <div class="shots__heading">
+          <span class="eyebrow">Veja na prática</span>
+          <h2>Interface clara e completa</h2>
+          <p class="section__sub">Uma visão detalhada do que está ocupando o disco: árvore de pastas, lista ordenável e gráficos.</p>
+        </div>
+        <div class="shots__nav">
+          <button class="circle-btn" type="button" data-carousel-prev aria-label="Tela anterior">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg>
+          </button>
+          <button class="circle-btn" type="button" data-carousel-next aria-label="Próxima tela">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 5.5 6.5 6.5-6.5 6.5"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="carousel" data-carousel data-dot-label="Ir para a tela {n}" data-status-format="{n} de {total}" role="group" aria-roledescription="carrossel" aria-label="Telas do DriverSize">
+        <div class="carousel__viewport" data-carousel-viewport>
+          <ul class="carousel__track" data-carousel-track role="list">
+
+            <li class="slide" data-slide aria-roledescription="slide" aria-label="1 de 6 — Arquivos e pastas">
+              <figure class="slide__figure">
+                <div class="slide__frame">
+                  <img
+                    class="slide__img"
+                    src="assets/img/screens/arquivos-e-pastas.webp"
+                    width="1600"
+                    height="852"
+                    alt="Lista de arquivos e pastas do DriverSize com tamanho, percentual do total, número de itens e data de modificação"
+                    decoding="async">
+                </div>
+                <figcaption class="slide__caption">
+                  <h3>Arquivos e pastas</h3>
+                  <p>Navegue pela árvore como no Explorador: tamanho, % do total e número de itens em cada pasta.</p>
+                  <a class="slide__zoom" href="assets/img/screens/arquivos-e-pastas.webp" target="_blank" rel="noopener">
+                    Ver em tamanho real
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+                  </a>
+                </figcaption>
+              </figure>
+            </li>
+
+            <li class="slide" data-slide aria-roledescription="slide" aria-label="2 de 6 — Visão em grade">
+              <figure class="slide__figure">
+                <div class="slide__frame">
+                  <img
+                    class="slide__img"
+                    src="assets/img/screens/visualizacao-em-grade.webp"
+                    width="1600"
+                    height="852"
+                    alt="Pastas exibidas em grade no DriverSize, com cartões mostrando o tamanho e uma barra proporcional"
+                    decoding="async">
+                </div>
+                <figcaption class="slide__caption">
+                  <h3>Visão em grade</h3>
+                  <p>Troque a lista por cartões — o tamanho de cada pasta fica visível de relance.</p>
+                  <a class="slide__zoom" href="assets/img/screens/visualizacao-em-grade.webp" target="_blank" rel="noopener">
+                    Ver em tamanho real
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+                  </a>
+                </figcaption>
+              </figure>
+            </li>
+
+            <li class="slide" data-slide aria-roledescription="slide" aria-label="3 de 6 — Tipos de arquivo">
+              <figure class="slide__figure">
+                <div class="slide__frame">
+                  <img
+                    class="slide__img"
+                    src="assets/img/screens/tipos-de-arquivo.webp"
+                    width="1600"
+                    height="852"
+                    alt="Tabela de tipos de arquivo por extensão, com tamanho, percentual e quantidade de arquivos"
+                    decoding="async">
+                </div>
+                <figcaption class="slide__caption">
+                  <h3>Tipos de arquivo</h3>
+                  <p>Veja o que pesa por extensão — .dll, .msi, .exe — e o total por tipo de arquivo.</p>
+                  <a class="slide__zoom" href="assets/img/screens/tipos-de-arquivo.webp" target="_blank" rel="noopener">
+                    Ver em tamanho real
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+                  </a>
+                </figcaption>
+              </figure>
+            </li>
+
+            <li class="slide" data-slide aria-roledescription="slide" aria-label="4 de 6 — Limpeza segura">
+              <figure class="slide__figure">
+                <div class="slide__frame">
+                  <img
+                    class="slide__img"
+                    src="assets/img/screens/limpeza-segura.webp"
+                    width="1600"
+                    height="852"
+                    alt="Janela de limpeza segura do DriverSize, com categorias de arquivos temporários e espaço recuperável"
+                    decoding="async">
+                </div>
+                <figcaption class="slide__caption">
+                  <h3>Limpeza segura</h3>
+                  <p>Revise temporários, caches e outros itens descartáveis e veja quanto espaço será liberado.</p>
+                  <a class="slide__zoom" href="assets/img/screens/limpeza-segura.webp" target="_blank" rel="noopener">
+                    Ver em tamanho real
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+                  </a>
+                </figcaption>
+              </figure>
+            </li>
+
+            <li class="slide" data-slide aria-roledescription="slide" aria-label="5 de 6 — Busca global">
+              <figure class="slide__figure">
+                <div class="slide__frame">
+                  <img
+                    class="slide__img"
+                    src="assets/img/screens/busca-global.webp"
+                    width="1600"
+                    height="852"
+                    alt="Busca global por nome de arquivo no DriverSize, mostrando resultados e o caminho completo de cada um"
+                    decoding="async">
+                </div>
+                <figcaption class="slide__caption">
+                  <h3>Busca global</h3>
+                  <p>Encontre um arquivo em toda a área analisada, com o caminho completo, sem reescanear.</p>
+                  <a class="slide__zoom" href="assets/img/screens/busca-global.webp" target="_blank" rel="noopener">
+                    Ver em tamanho real
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+                  </a>
+                </figcaption>
+              </figure>
+            </li>
+
+            <li class="slide" data-slide aria-roledescription="slide" aria-label="6 de 6 — Tema escuro">
+              <figure class="slide__figure">
+                <div class="slide__frame">
+                  <img
+                    class="slide__img"
+                    src="assets/img/screens/tema-escuro.webp"
+                    width="1600"
+                    height="852"
+                    alt="Interface do DriverSize no tema escuro, com tabela de pastas e gráfico de distribuição"
+                    decoding="async">
+                </div>
+                <figcaption class="slide__caption">
+                  <h3>Tema escuro</h3>
+                  <p>Trabalhe à noite ou em telas escuras sem perder legibilidade.</p>
+                  <a class="slide__zoom" href="assets/img/screens/tema-escuro.webp" target="_blank" rel="noopener">
+                    Ver em tamanho real
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8.5 8.5M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+                  </a>
+                </figcaption>
+              </figure>
+            </li>
+
+          </ul>
+        </div>
+
+        <div class="carousel__footer">
+          <div class="carousel__dots" data-carousel-dots role="group" aria-label="Escolher tela"></div>
+          <p class="carousel__hint"><span data-carousel-status aria-live="polite">1 de 6</span> · use as setas ou arraste</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMO FUNCIONA ============ -->
+  <section class="section" id="como-funciona">
+    <div class="container">
+      <header class="section__head reveal">
+        <span class="eyebrow">Como funciona</span>
+        <h2>Em 4 passos, você libera espaço</h2>
+        <p class="section__sub">É simples começar a usar o DriverSize.</p>
+      </header>
+
+      <ol class="steps">
+        <li class="step reveal">
+          <span class="step__num">1</span>
+          <h3>Escolha uma unidade</h3>
+          <p>Selecione um drive, uma pasta específica ou vários locais para analisar de uma vez.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__num">2</span>
+          <h3>Aguarde a varredura</h3>
+          <p>O DriverSize percorre a árvore em segundo plano e você acompanha o progresso em tempo real.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__num">3</span>
+          <h3>Explore os resultados</h3>
+          <p>Ordene por tamanho, veja o gráfico por tipo e abra cada pasta até o arquivo responsável.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__num">4</span>
+          <h3>Libere espaço</h3>
+          <p>Apague, mova ou arquive direto do DriverSize — ou exporte o relatório antes de decidir.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section section--soft" id="faq">
+    <div class="container container--narrow">
+      <header class="section__head section__head--center reveal">
+        <span class="eyebrow">Dúvidas frequentes</span>
+        <h2>Perguntas rápidas</h2>
+      </header>
+
+      <div class="faq reveal">
+        <details class="faq__item">
+          <summary>O DriverSize é realmente grátis?</summary>
+          <p>Sim. A versão gratuita mostra o tamanho de todas as pastas e arquivos, com gráficos e relatórios, sem prazo de teste. Existe uma versão Professional opcional, com impressão, exportação em PDF e automação por linha de comando.</p>
+        </details>
+        <details class="faq__item">
+          <summary>Ele deixa o computador mais lento?</summary>
+          <p>Não. O DriverSize não instala serviços, hooks de sistema nem extensões do Explorer: ele usa recursos apenas enquanto você está varrendo. Ao fechar o programa, nada continua rodando em segundo plano.</p>
+        </details>
+        <details class="faq__item">
+          <summary>Funciona em HD externo, pendrive e rede?</summary>
+          <p>Funciona. Além dos discos locais, o DriverSize analisa HDs externos, SSDs, pendrives, cartões SD, NAS, SAN e compartilhamentos de rede (caminhos UNC).</p>
+        </details>
+        <details class="faq__item">
+          <summary>Qual a diferença entre “Tamanho” e “Tamanho em disco”?</summary>
+          <p>“Tamanho” é a soma real dos bytes dos arquivos. “Tamanho em disco” considera o espaço ocupado em clusters — por isso é sempre igual ou maior que o tamanho lógico.</p>
+        </details>
+        <details class="faq__item">
+          <summary>Preciso ser administrador?</summary>
+          <p>Para pastas comuns, não. Para ler áreas protegidas do sistema (como <code>System Volume Information</code>), execute como administrador — o programa tem a opção “Reiniciar como administrador”.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ APOIE ============ -->
+  <section class="support" id="apoie">
+    <div class="container">
+      <div class="support__card reveal">
+        <div class="support__cup" aria-hidden="true">
+          <svg viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="57" fill="#fff" opacity=".6"/>
+            <ellipse cx="57" cy="95" rx="33" ry="6" fill="#e7b977" opacity=".5"/>
+            <path d="M28 48h50v19a19 19 0 0 1-19 19H47a19 19 0 0 1-19-19z" fill="#fff" stroke="#eec38a" stroke-width="2.2"/>
+            <path d="M78 54h5a9.5 9.5 0 0 1 0 19h-5" fill="none" stroke="#eec38a" stroke-width="5" stroke-linecap="round"/>
+            <ellipse cx="53" cy="49" rx="25" ry="5" fill="#f2c98b"/>
+            <path d="M42 33c0-5 6-6 6-11M56 33c0-5 6-6 6-11" stroke="#f0b429" stroke-width="4" stroke-linecap="round" fill="none" opacity=".85"/>
+            <circle cx="53" cy="68" r="13.5" fill="#f7931a"/>
+            <text x="53" y="74" text-anchor="middle" font-size="16" font-weight="700" fill="#fff" font-family="Inter, Arial, sans-serif">₿</text>
+          </svg>
+        </div>
+        <div class="support__copy">
+          <span class="support__kicker">Gostou do DriverSize?</span>
+          <h2>Me pague um café <span aria-hidden="true">❤️</span></h2>
+          <p>O DriverSize é gratuito. Se ele te ajudou a recuperar espaço no disco, você pode apoiar o projeto com um café — qualquer valor incentiva novas versões e melhorias.</p>
+        </div>
+        <div class="support__action">
+          <a class="btn btn--donate" href="#apoie" data-donate>
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M4 8h13v9a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3zM17 9h1.6a2.4 2.4 0 0 1 0 4.8H17M6 4.5c0 .8.8 1 .8 1.8M10 4.5c0 .8.8 1 .8 1.8"/></svg>
+            Me pague um café
+          </a>
+          <small>Qualquer valor ajuda muito!</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DOWNLOAD ============ -->
+  <section class="download" id="download">
+    <div class="container download__inner">
+      <div class="download__copy reveal">
+        <span class="eyebrow eyebrow--light">Pronto em 2 minutos</span>
+        <h2>Descubra hoje o que está enchendo o seu disco</h2>
+        <p>Instalador NSIS, sem serviços em segundo plano e sem cadastro. Versão portátil disponível. Compatível com Windows 10 e 11 (64 bits).</p>
+        <div class="download__actions">
+          <a class="btn btn--white btn--lg" href="downloads/DriverSize-setup.exe" download>
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M12 4v11m0 0 4.2-4.2M12 15l-4.2-4.2M5 19h14"/></svg>
+            Baixar DriverSize
+          </a>
+          <a class="btn btn--onDark btn--lg" href="#faq">Tirar dúvidas</a>
+        </div>
+        <ul class="download__meta">
+          <li>Grátis</li><li>Windows 10 e 11</li><li>Sem anúncios no app</li><li>Portátil disponível</li>
+        </ul>
+      </div>
+      <div class="download__art reveal" aria-hidden="true">
+        <div class="disk">
+          <div class="disk__ring"></div>
+          <div class="disk__ring disk__ring--2"></div>
+          <div class="disk__hub"></div>
+          <div class="disk__label">
+            <strong>460 GB</strong>
+            <span>usados</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <a class="brand brand--footer" href="#inicio">
+        <img class="brand__mark" src="assets/img/logo.svg" alt="" width="34" height="34" decoding="async">
+        <span class="brand__text"><span class="brand__word">Driver<span>Size</span></span><small>Analisador de espaço em disco</small></span>
+      </a>
+      <p>Um utilitário para entender — e liberar — o espaço do seu computador, com gráficos, relatórios e exportação.</p>
+    </div>
+
+    <nav class="site-footer__col" aria-label="Links do site">
+      <h2>Links</h2>
+      <ul>
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#recursos">Recursos</a></li>
+        <li><a href="#telas">Telas</a></li>
+        <li><a href="#download">Download</a></li>
+      </ul>
+    </nav>
+
+    <nav class="site-footer__col" aria-label="Recursos úteis">
+      <h2>Recursos úteis</h2>
+      <ul>
+        <li><a href="#faq">Perguntas frequentes</a></li>
+        <li><a href="#download">Novidades da versão</a></li>
+        <li><a href="#apoie">Apoiar o projeto</a></li>
+        <li><a href="#download">Requisitos do sistema</a></li>
+      </ul>
+    </nav>
+
+    <div class="site-footer__col">
+      <h2>Conecte-se</h2>
+      <ul class="socials">
+        <li><a href="#topo" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6a9.4 9.4 0 0 0-3 18.3c.5.1.6-.2.6-.5v-1.7c-2.6.6-3.1-1.2-3.1-1.2-.4-1.1-1-1.4-1-1.4-.9-.6 0-.6 0-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.4-1.1.7-1.4-2.1-.2-4.3-1-4.3-4.6 0-1 .4-1.9 1-2.5-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.6 1a9 9 0 0 1 4.8 0c1.8-1.3 2.6-1 2.6-1 .5 1.3.2 2.3.1 2.6.6.6 1 1.4 1 2.5 0 3.6-2.2 4.4-4.3 4.6.4.4.7 1 .7 2v2.9c0 .3.1.6.6.5A9.4 9.4 0 0 0 12 2.6z"/></svg></a></li>
+        <li><a href="mailto:contato@exemplo.com" aria-label="E-mail"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="m3.8 7 8.2 6 8.2-6"/></svg></a></li>
+        <li><a href="#telas" aria-label="Vídeos"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.8" y="6" width="18.4" height="12" rx="4"/><path d="m10.4 9.6 4.6 2.4-4.6 2.4z" fill="currentColor" stroke="none"/></svg></a></li>
+      </ul>
+      <p class="site-footer__note">Feito com carinho para quem vive sem espaço em disco.</p>
+    </div>
+  </div>
+
+  <div class="container site-footer__bottom">
+    <p>© <span data-year>2026</span> DriverSize. Todos os direitos reservados.</p>
+    <p><a href="#faq">Termos</a> · <a href="#faq">Privacidade</a></p>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

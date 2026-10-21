@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="DriverSize">
+  <defs>
+    <linearGradient id="ds-ring" x1=".1" y1="0" x2=".9" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset=".35" stop-color="#e8f2ff"/>
+      <stop offset=".7" stop-color="#b6cdf0"/>
+      <stop offset="1" stop-color="#7d9ec9"/>
+    </linearGradient>
+    <radialGradient id="ds-ball" cx=".36" cy=".28" r=".92">
+      <stop offset="0" stop-color="#5cd6ff"/>
+      <stop offset=".38" stop-color="#1f8bf0"/>
+      <stop offset=".75" stop-color="#1259cf"/>
+      <stop offset="1" stop-color="#0a2f86"/>
+    </radialGradient>
+    <radialGradient id="ds-gloss" cx=".5" cy=".1" r=".72">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".7"/>
+      <stop offset=".55" stop-color="#ffffff" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ds-folder" x1=".1" y1="0" x2=".8" y2="1">
+      <stop offset="0" stop-color="#b7f4ff"/>
+      <stop offset=".45" stop-color="#4cc6fb"/>
+      <stop offset="1" stop-color="#0b8fe0"/>
+    </linearGradient>
+    <linearGradient id="ds-sheet" x1="0" y1="0" x2=".4" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".92"/>
+      <stop offset="1" stop-color="#d8ecff" stop-opacity=".55"/>
+    </linearGradient>
+    <linearGradient id="ds-drive" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset=".45" stop-color="#e3eefc"/>
+      <stop offset="1" stop-color="#8ea9c9"/>
+    </linearGradient>
+    <linearGradient id="ds-drive-in" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#233b5c"/>
+      <stop offset="1" stop-color="#0b1a2e"/>
+    </linearGradient>
+    <filter id="ds-shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#062a63" flood-opacity=".35"/>
+    </filter>
+    <clipPath id="ds-clip"><circle cx="128" cy="128" r="112"/></clipPath>
+  </defs>
+
+  <circle cx="128" cy="128" r="124" fill="url(#ds-ring)"/>
+  <circle cx="128" cy="127" r="112" fill="url(#ds-ball)"/>
+  <ellipse cx="128" cy="66" rx="96" ry="58" fill="url(#ds-gloss)"/>
+
+  <g clip-path="url(#ds-clip)">
+    <ellipse cx="128" cy="212" rx="96" ry="30" fill="#041f4d" opacity=".35"/>
+
+    <!-- folhas de trás -->
+    <path d="M70 82h38l12 13h56a10 10 0 0 1 10 10v8H70z" fill="url(#ds-sheet)" opacity=".55"/>
+    <path d="M64 92h38l11 12h54a9 9 0 0 1 9 9v6H64z" fill="url(#ds-sheet)" opacity=".8"/>
+
+    <!-- pasta -->
+    <g filter="url(#ds-shadow)">
+      <path d="M58 91a13 13 0 0 1 13-13h33l15 17h63a13 13 0 0 1 13 13v59a13 13 0 0 1-13 13H71a13 13 0 0 1-13-13z" fill="url(#ds-folder)"/>
+      <path d="M58 96h139v3H58z" fill="#ffffff" opacity=".35"/>
+    </g>
+
+    <!-- linhas -->
+    <rect x="76" y="119" width="60" height="10" rx="5" fill="#c9f7ff"/>
+    <rect x="76" y="136" width="47" height="10" rx="5" fill="#eafcff" opacity=".95"/>
+    <rect x="76" y="153" width="34" height="10" rx="5" fill="#eafcff" opacity=".8"/>
+
+    <!-- pizza -->
+    <g filter="url(#ds-shadow)">
+      <circle cx="170" cy="157" r="40" fill="#ffffff"/>
+      <path d="M170 157 170 117a40 40 0 0 1 34 61z" fill="#0a3f96"/>
+      <path d="M170 157 204 178a40 40 0 0 1-34 19z" fill="#22d3ee"/>
+      <circle cx="170" cy="157" r="40" fill="none" stroke="#ffffff" stroke-width="7"/>
+    </g>
+
+    <!-- drive -->
+    <g filter="url(#ds-shadow)">
+      <rect x="44" y="188" width="168" height="44" rx="15" fill="url(#ds-drive)"/>
+      <rect x="58" y="197" width="140" height="24" rx="11" fill="url(#ds-drive-in)"/>
+      <rect x="66" y="204" width="70" height="8" rx="4" fill="#3d5c82" opacity=".7"/>
+      <rect x="172" y="202" width="18" height="8" rx="4" fill="#4ff0ff"/>
+    </g>
+  </g>
+
+  <circle cx="128" cy="127" r="112" fill="none" stroke="#ffffff" stroke-opacity=".45" stroke-width="2"/>
+  <circle cx="128" cy="128" r="123" fill="none" stroke="#ffffff" stroke-opacity=".9" stroke-width="4"/>
+</svg>

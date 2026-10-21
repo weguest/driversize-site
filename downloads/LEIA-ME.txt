@@ -1,0 +1,1 @@
+﻿You can place DriverSize-setup.exe here, or change the two download links in index.html.
