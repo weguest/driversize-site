@@ -113,7 +113,8 @@ apontar para um domínio errado antes da hora.
 
 - **Cloudflare Pages**: arraste a pasta `site` no painel → URL `*.pages.dev`, HTTPS e CDN prontos.
 - **Netlify Drop**: https://app.netlify.com/drop → arraste a pasta.
-- **GitHub Pages**: suba o conteúdo desta pasta na raiz do repositório e ative Pages na branch `main` (pasta `/ (root)`).
+- **GitHub Pages**: repositório `weguest/driversize-site`, branch `main`, pasta `/ (root)` →
+  https://weguest.github.io/driversize-site/
 - **Vercel**: `npx vercel` dentro da pasta.
 
 Rode o build com `SITE_URL` **antes** de publicar para o card social e o `hreflang`
@@ -138,10 +139,10 @@ build e traduza o novo `alt`/título nos JSON.
 
 ## 6. O que editar antes de divulgar
 
-1. **Download** — dois botões apontam para `downloads/DriverSize-setup.exe`. O build do
-   `package.json` gera `DriverSize-1.2.1-setup.exe` e `DriverSize-1.2.1-portable.exe`;
-   coloque o instalador na pasta (renomeando ou ajustando os `href` em `index.html`). Hoje
-   o link retorna 404.
+1. **Download** — o botão aponta para a Release do repositório `weguest/driversize`:
+   https://github.com/weguest/driversize/releases/download/v1.2.1/DriverSize-1.2.1-setup.exe
+   A Release precisa ser publicada com esse nome de arquivo. O instalador nunca entra neste
+   repositório.
 2. **Café / doações** — troque os `href="#apoie"` (menu e banner) pelo seu link real
    (Buy Me a Coffee, Ko-fi, PIX etc.). O banner inteiro pode ser removido se não quiser doações.
 3. **E-mail** — `mailto:contato@exemplo.com` no rodapé.
