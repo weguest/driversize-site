@@ -143,6 +143,16 @@ build e traduza o novo `alt`/título nos JSON.
    https://github.com/weguest/driversize/releases/download/v1.2.2/DriverSize-1.2.2-setup.exe
    A Release precisa ser publicada com esse nome de arquivo. O instalador nunca entra neste
    repositório.
+
+   **Atualização automática:** o link é resolvido em duas camadas, sem edição manual:
+
+   - `assets/js/main.js` consulta `releases/latest` na API do GitHub e reescreve o `href` do
+     instalador (cache de 5 min em `sessionStorage`; se a API falhar, o link estático continua
+     valendo).
+   - `.github/workflows/sync-release.yml` roda de hora em hora, em cada push e sob demanda:
+     executa `scripts/sync-release.mjs` (ajusta `index.html` + `README.md`), regera as páginas
+     com `build.mjs` e commita apenas se algo mudou. Para conferir localmente:
+     `node scripts/sync-release.mjs`.
 2. **Café / doações** — troque os `href="#apoie"` (menu e banner) pelo seu link real
    (Buy Me a Coffee, Ko-fi, PIX etc.). O banner inteiro pode ser removido se não quiser doações.
 3. **E-mail** — `mailto:contato@exemplo.com` no rodapé.

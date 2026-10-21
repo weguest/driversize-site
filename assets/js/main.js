@@ -278,6 +278,69 @@
     });
   });
 
+  /* ---------------- Download sempre na release mais recente ---------------- */
+  const downloadLinks = Array.from(document.querySelectorAll('a[href*="/releases/download/"]')).filter((link) =>
+    /\/releases\/download\/[^/]+\/DriverSize-[^/]+-setup\.exe$/.test(link.getAttribute('href') || '')
+  );
+
+  if (downloadLinks.length) {
+    const REPO = 'weguest/driversize';
+    const API = 'https://api.github.com/repos/' + REPO + '/releases/latest';
+    const CACHE_KEY = 'driversize:latest-release';
+    const CACHE_MS = 5 * 60 * 1000;
+
+    const apply = (tag, asset) => {
+      if (!tag || !asset) return;
+      const href = 'https://github.com/' + REPO + '/releases/download/' + tag + '/' + asset;
+      downloadLinks.forEach((link) => link.setAttribute('href', href));
+    };
+
+    let cached = null;
+    try {
+      const raw = window.sessionStorage.getItem(CACHE_KEY);
+      if (raw) {
+        const data = JSON.parse(raw);
+        if (data && Date.now() - data.at < CACHE_MS) cached = data;
+      }
+    } catch (error) {
+      cached = null;
+    }
+
+    if (cached) {
+      apply(cached.tag, cached.asset);
+    } else {
+      // O HTML já traz um link válido: se a API falhar ou demorar, nada muda.
+      const controller = 'AbortController' in window ? new AbortController() : null;
+      const timer = controller ? window.setTimeout(() => controller.abort(), 4000) : null;
+
+      fetch(API, {
+        headers: { Accept: 'application/vnd.github+json' },
+        signal: controller ? controller.signal : undefined
+      })
+        .then((response) => (response.ok ? response.json() : null))
+        .then((release) => {
+          if (!release || !release.tag_name) return;
+          const setup = (release.assets || []).find((asset) => /-setup\.exe$/i.test(asset.name));
+          if (!setup) return;
+          apply(release.tag_name, setup.name);
+          try {
+            window.sessionStorage.setItem(
+              CACHE_KEY,
+              JSON.stringify({ tag: release.tag_name, asset: setup.name, at: Date.now() })
+            );
+          } catch (error) {
+            /* modo privado ou cota cheia: segue sem cache */
+          }
+        })
+        .catch(() => {
+          /* mantém o link estático */
+        })
+        .finally(() => {
+          if (timer) window.clearTimeout(timer);
+        });
+    }
+  }
+
   /* ---------------- Ano no rodapé ---------------- */
   const year = document.querySelector('[data-year]');
   if (year) year.textContent = String(new Date().getFullYear());
